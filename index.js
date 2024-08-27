@@ -24,14 +24,14 @@ db.connect((err) => {
 
 // Define a route to get all records from a table
 app.get('/data', (req, res) => {
-    const { u1, u2 } = req.query;
+    const { Username, Password } = req.query;
   
-    if (!u1 || !u2) {
+    if (!Username || !Password) {
       return res.status(400).send('Query parameters u1 and u2 are required');
     }
   
     const sqlQuery = 'SELECT * FROM logs WHERE uname=? AND pass=?';
-    db.query(sqlQuery, [u1, u2], (err, results) => {
+    db.query(sqlQuery, [Username, Password], (err, results) => {
       if (err) {
         console.error('Error fetching data:', err);
         res.status(500).send('Server error');
